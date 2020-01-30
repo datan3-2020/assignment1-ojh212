@@ -1,7 +1,7 @@
 ---
 title: "Statistical assignment 1"
-author: "[add your name and candidate number here]"
-date: "[add date here]"
+author: "Olivia Hudson 680022339"
+date: "29/01/2020"
 output: github_document
 ---
 
@@ -15,7 +15,7 @@ In this assignment you will work with the individual level data from wave 8 of t
 
 ```{r}
 library(tidyverse)
-Data <- ...
+Data <- read_tsv("C:/Users/Liv/OneDrive - University of Exeter/Second Year/Term 2/POL2094 Data Analysis iii/Github/datan3/Data/6614tab_10EB1BA6123C0D95E60D28E156AEA8F7_V1/UKDA-6614-tab/tab/ukhls_w8/h_indresp.tab")
 ```
 
 Now you have got your data frame stored as Data. 
@@ -30,7 +30,7 @@ Complete the code below to select those variables from the data frame and save t
 
 ```{r}
 Data <- Data %>%
-        select(...)
+        select(pidp, h_eumem, h_sex_dv, h_age_dv, h_memorig)
 ```
 
 ## Filter observations (10 points)
@@ -39,7 +39,7 @@ To make nationally representative estimates from the Understanding Society data 
 
 ```{r}
 Data <- Data %>%
-        filter(...)
+        filter(h_memorig == 1)
 ```
 
 ## Recode data (20 points)
@@ -64,12 +64,16 @@ In all cases, we want to create new variables.
 
 ```{r}
 Data <- Data %>%
-        mutate(EU = ...
-      
-        ) %>%
-        mutate(sex = ...) %>%
-        mutate(agegr = ...
-        )
+        mutate(EU = ifelse(h_eumem == 1, 1,
+                           ifelse(h_eumem == 2, 0, NA))) %>%
+        mutate(sex = ifelse(h_sex_dv == 1, "male",
+                            ifelse(h_sex_dv == 2, "female", NA))) %>%
+        mutate(agegr = case_when(
+          between(h_age_dv, 16, 25) ~ "16 to 25",
+          between(h_age_dv, 26, 40) ~ "26 to 40",
+          between(h_age_dv, 41, 55) ~ "41 to 55",
+          between(h_age_dv, 56, 70) ~ "56 to 70",
+          h_age_dv > 70 ~ "Over 70"))
 
 ```
 
@@ -79,11 +83,16 @@ Let us **dplyr** to calculate how many people in the sample supported Remain and
 
 ```{r}
 Data %>%
-        ...
-        
+  count(EU)%>%
+  mutate(Percentage = n/sum(n) * 100)
 ```
 
 Write a couple of sentences with the interpretation of this result. How this compares with the result of the 2016 referendum? Why?
+
+In Wave 8 of the Understanding Society survery, respondents were asked...
+> "Should the United Kingdom remain a member of the European Union or leave the European Union?" 
+
+The results above show that 9338 respondents (40.7% of the sample) thought that the UK should leave the EU and 11118 respondents (48.4% of the sample) thought that the UK should stay in the EU. In the 2016 EU referendum, the UK voted to leave the European Union by 58% to 42%. The results from the survery data show more support for remaining in the EU whereas the the actual referendum saw more support for leaving the EU. The Understanding Society data shows that the most support for remain was amongst those aged 16-25, but 593 of these respondents were aged 16 or 17 and so couldn't actually vote to remain in the referendum. This explains the different results between the Understanding Society survey question and the referendum.
 
 ## Summarise data by sex and age (30 points)
 
@@ -92,9 +101,11 @@ Now let us look at the support for Leave and Remain by sex and age. Use your new
 
 ```{r}
 Data %>%
-        ...
+  group_by(sex, agegr) %>%
+  summarise(propLeaveorRemain = mean(EU, na.rm = TRUE) * 100 
+  )
         
 ```
 
 
-Write a couple of sentences interpreting your results.
+The propLeaveorRemain variable represents the percentage of people who voted remain. From this summary it is clear that the most support for Remain comes from females aged between 16 and 25 (72.6% of females aged 16-25 supported Remain). The second group with the most support for remain is males aged 16-25 (66.1% of men aged 16-25 supported Remain). This suggests that the support for remain is overal highest amongst younger age groups, regardless of sex. The least support for remain comes from males over 70, with only 37.6% of men over 70 supporting Remain. The second group with the least support for remain is females aged over 70, with only 44.2% of females over 70 supporting Remain. This suggests that the support for remain is lowest overall amongst older age groups, regardless of sex. 
