@@ -13,14 +13,14 @@ data set. Please complete the code below.
 library(tidyverse)
 ```
 
-    ## -- Attaching packages --------------------------------------------------------------------------- tidyverse 1.3.0 --
+    ## -- Attaching packages ------------------------------------------------------------------------- tidyverse 1.3.0 --
 
     ## v ggplot2 3.2.1     v purrr   0.3.3
     ## v tibble  2.1.3     v dplyr   0.8.3
     ## v tidyr   1.0.0     v stringr 1.4.0
     ## v readr   1.3.1     v forcats 0.4.0
 
-    ## -- Conflicts ------------------------------------------------------------------------------ tidyverse_conflicts() --
+    ## -- Conflicts ---------------------------------------------------------------------------- tidyverse_conflicts() --
     ## x dplyr::filter() masks stats::filter()
     ## x dplyr::lag()    masks stats::lag()
 
@@ -164,21 +164,20 @@ Data %>%
 Write a couple of sentences with the interpretation of this result. How
 this compares with the result of the 2016 referendum? Why?
 
-In Wave 8 of the Understanding Society survery, respondents were asked…
-\> “Should the United Kingdom remain a member of the European Union or
-leave the European Union?”
-
-The results above show that 9338 respondents (40.7% of the sample)
-thought that the UK should leave the EU and 11118 respondents (48.4% of
-the sample) thought that the UK should stay in the EU. In the 2016 EU
-referendum, the UK voted to leave the European Union by 58% to 42%. The
-results from the survery data show more support for remaining in the EU
-whereas the the actual referendum saw more support for leaving the EU.
-The Understanding Society data shows that the most support for remain
-was amongst those aged 16-25, but 593 of these respondents were aged 16
-or 17 and so couldn’t actually vote to remain in the referendum. This
-explains the different results between the Understanding Society survey
-question and the referendum.
+In Wave 8 of the Understanding Society survery, respondents were asked;
+“Should the United Kingdom remain a member of the European Union or
+leave the European Union?” The results above show that **9338**
+respondents (**40.7%** of the sample) thought that the UK should leave
+the EU and **11118** respondents (**48.4%** of the sample) thought that
+the UK should stay in the EU. In the 2016 EU referendum, the UK voted to
+leave the European Union by **58%** to **42%**. The results from the
+survery data show more support for remaining in the EU whereas the the
+actual referendum saw more support for leaving the EU. The Understanding
+Society data shows that the most support for remain was amongst those
+aged 16-25, but **593** of these respondents were aged 16 or 17 and so
+couldn’t actually vote to remain in the referendum. This explains the
+different results between the Understanding Society survey question and
+the referendum.
 
 ## Summarise data by sex and age (30 points)
 
@@ -209,14 +208,16 @@ Data %>%
     ## 11 <NA>   16 to 25             100
 
 The propLeaveorRemain variable represents the percentage of people who
-voted remain. From this summary it is clear that the most support for
-Remain comes from females aged between 16 and 25 (72.6% of females aged
-16-25 supported Remain). The second group with the most support for
-remain is males aged 16-25 (66.1% of men aged 16-25 supported Remain).
-This suggests that the support for remain is overal highest amongst
-younger age groups, regardless of sex. The least support for remain
-comes from males over 70, with only 37.6% of men over 70 supporting
-Remain. The second group with the least support for remain is females
-aged over 70, with only 44.2% of females over 70 supporting Remain. This
-suggests that the support for remain is lowest overall amongst older age
+voted remain. From this summary it is clear that the most support in
+Wave 8 of the Understanding Society survery for remaining in the EU came
+from females aged between 16 and 25 (**72.6%** of females aged 16-25
+supported Remain). The second group with the most support for
+remainining in the EU is males aged 16-25 (**66.1%** of men aged 16-25
+supported Remain). This suggests that the support for remaining in the
+EU is overal highest amongst younger age groups, regardless of sex. The
+least support for remaining in the EU comes from males over 70, with
+only **37.6%** of men over 70 supporting Remain. The second group with
+the least support for remaining in the EU is females aged over 70, with
+only **44.2%** of females over 70 supporting Remain. This suggests that
+the support for remaining in the EU is lowest overall amongst older age
 groups, regardless of sex.
